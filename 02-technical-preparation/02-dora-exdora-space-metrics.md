@@ -29,11 +29,16 @@ Google's DORA (DevOps Research and Assessment) team identified **four metrics** 
 ```mermaid
 graph TD
     subgraph "DORA Metrics"
-        A[Deployment Frequency] --> P[Performance Classification<br/>Elite | High | Medium | Low]
-        B[Lead Time for Changes] --> P
-        C[Change Failure Rate] --> P
-        D[Time to Restore Service<br/>(MTTR)] --> P
+        A[Deployment Frequency]
+        B[Lead Time for Changes]
+        C[Change Failure Rate]
+        D[Time to Restore Service<br/>(MTTR)]
+        P[Performance Classification<br/>Elite | High | Medium | Low]
     end
+    A --> P
+    B --> P
+    C --> P
+    D --> P
 ```
 
 | Metric | Definition | Elite | High | Medium | Low | How to Measure |
