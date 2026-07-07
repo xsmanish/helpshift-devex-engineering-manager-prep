@@ -27,18 +27,22 @@ Google's DORA (DevOps Research and Assessment) team identified **four metrics** 
 #### The Four Key Metrics
 
 ```mermaid
-graph TD
-    subgraph "DORA Metrics"
-        A[Deployment Frequency]
-        B[Lead Time for Changes]
-        C[Change Failure Rate]
-        D[Time to Restore Service<br/>(MTTR)]
-        P[Performance Classification<br/>Elite | High | Medium | Low]
-    end
-    A --> P
-    B --> P
-    C --> P
-    D --> P
+flowchart TD
+subgraph DORA["DORA Metrics"]
+    DF["Deployment Frequency"]
+    LT["Lead Time for Changes"]
+    CFR["Change Failure Rate"]
+    MTTR["Time to Restore Service (MTTR)"]
+    PERF["Performance Classification
+Elite
+High
+Medium
+Low"]
+end
+DF --> PERF
+LT --> PERF
+CFR --> PERF
+MTTR --> PERF
 ```
 
 | Metric | Definition | Elite | High | Medium | Low | How to Measure |
@@ -77,29 +81,29 @@ exDORA extends the original four metrics to cover additional dimensions of softw
 #### The Extended Metrics
 
 ```mermaid
-graph LR
-    subgraph "Original DORA"
-        A[Deploy Frequency]
-        B[Lead Time]
-        C[Change Failure Rate]
-        D[MTTR]
-    end
-    subgraph "exDORA Additions"
-        E[Reliability]
-        F[Operational Performance]
-        G[Availability]
-        H[Latency]
-        I[Sustainability]
-    end
-    A --> K[Complete Delivery Picture]
-    B --> K
-    C --> K
-    D --> K
-    E --> K
-    F --> K
-    G --> K
-    H --> K
-    I --> K
+flowchart LR
+subgraph DORA["Original DORA"]
+A["Deploy Frequency"]
+B["Lead Time"]
+C["Change Failure Rate"]
+D["MTTR"]
+end
+subgraph EXDORA["exDORA Extensions"]
+E["Reliability"]
+F["Operational Performance"]
+G["Availability"]
+H["Latency"]
+I["Sustainability"]
+end
+A --> K["Complete Delivery Health"]
+B --> K
+C --> K
+D --> K
+E --> K
+F --> K
+G --> K
+H --> K
+I --> K
 ```
 
 | Additional Metric | Definition | Why It Matters for Helpshift |
@@ -121,22 +125,21 @@ SPACE was introduced by Nicole Forsgren, Margaret-Anne Storey, and colleagues to
 #### The Five Dimensions
 
 ```mermaid
-graph TB
-    subgraph "SPACE Framework"
-        S[Satisfaction & Well-being]
-        P2[Performance]
-        A[Activity]
-        C[Communication & Collaboration]
-        E[Efficiency & Flow]
-    end
-    
-    S --> O[Complete Developer Productivity Picture]
-    P2 --> O
-    A --> O
-    C --> O
-    E --> O
-    
-    D[DORA Metrics] -.-> O
+flowchart TB
+subgraph SPACE["SPACE Framework"]
+S["Satisfaction & Well-being"]
+P["Performance"]
+A["Activity"]
+C["Communication & Collaboration"]
+E["Efficiency & Flow"]
+end
+OUT["Complete Developer Productivity View"]
+S --> OUT
+P --> OUT
+A --> OUT
+C --> OUT
+E --> OUT
+DORA["DORA Metrics"] -.-> OUT
 ```
 
 | Dimension | Definition | Example Metrics | How to Collect |
@@ -162,22 +165,21 @@ The most effective approach is to use **both frameworks together**.
 #### The Combined Measurement Model
 
 ```mermaid
-graph TD
-    subgraph "Platform Metrics Dashboard"
-        A["DORA (Quarterly Pulse)"]
-        B["SPACE (Quarterly Survey)"]
-        C["Platform Adoption (Continuous)"]
-        D["Cost Efficiency (Monthly)"]
-    end
-    
-    A --> E["Leadership Report"]
-    B --> E
-    C --> E
-    D --> E
-    
-    E --> F["Platform Investment Decisions"]
-    E --> G["Engineering Health Assessment"]
-    E --> H["Team-level Interventions"]
+flowchart TD
+subgraph DASHBOARD["Platform Metrics Dashboard"]
+DORA["DORA Metrics"]
+SPACE["SPACE Surveys"]
+ADOPTION["Platform Adoption"]
+COST["Cost Efficiency"]
+end
+REPORT["Engineering Health Report"]
+DORA --> REPORT
+SPACE --> REPORT
+ADOPTION --> REPORT
+COST --> REPORT
+REPORT --> INVEST["Platform Investment Decisions"]
+REPORT --> HEALTH["Engineering Health Assessment"]
+REPORT --> ACTION["Team Improvement Actions"]
 ```
 
 #### Implementation at Helpshift
@@ -323,43 +325,55 @@ Beyond DORA and SPACE, platform teams need their own success metrics.
 ### DORA Metrics Collection Architecture
 
 ```mermaid
-graph TB
-    subgraph "Data Sources"
-        A[GitHub / GitLab] --> C[CI/CD Telemetry Collector]
-        B[CI Pipelines] --> C
-    end
-    
-    subgraph "Processing"
-        C --> D[Time-Series Database<br/>Prometheus / VictoriaMetrics]
-        C --> E[Event Store<br/>for lead time tracking]
-    end
-    
-    subgraph "Visualisation"
-        D --> F[Grafana Dashboard]
-        E --> G["DORA Report Generator<br/>(Weekly Summary)"]
-    end
-    
-    subgraph "Alerting"
-        D --> H[Alert Manager]
-        H --> I[Slack / PagerDuty]
-    end
-    
-    subgraph "Governance"
-        F --> J[Leadership Review<br/>(Monthly OKR Check)]
-        G --> J
-    end
+flowchart TB
+subgraph SOURCES["Data Sources"]
+GIT["GitHub / GitLab"]
+PIPE["CI/CD Pipelines"]
+end
+COLLECTOR["Telemetry Collector"]
+GIT --> COLLECTOR
+PIPE --> COLLECTOR
+subgraph PROCESSING["Processing Layer"]
+TSDB["Prometheus / VictoriaMetrics"]
+EVENTS["Lead Time Event Store"]
+end
+COLLECTOR --> TSDB
+COLLECTOR --> EVENTS
+subgraph VIS["Visualization"]
+GRAFANA["Grafana Dashboard"]
+DORAREP["Weekly DORA Reports"]
+end
+TSDB --> GRAFANA
+EVENTS --> DORAREP
+subgraph ALERT["Alerting"]
+AM["AlertManager"]
+SLACK["Slack / PagerDuty"]
+end
+TSDB --> AM
+AM --> SLACK
+subgraph GOV["Governance"]
+REVIEW["Leadership Review"]
+end
+GRAFANA --> REVIEW
+DORAREP --> REVIEW
 ```
 
 ### SPACE Survey Collection
 
 ```mermaid
-graph LR
-    A[Developer Portal<br/>(Backstage)] --> B[Quarterly Pulse Survey]
-    B --> C[Survey Results<br/>(Anonymised)]
-    C --> D[Trend Analysis Dashboard]
-    D --> E[Engineering Health Report]
-    E --> F[Action Items for Platform Team]
-    F --> A
+flowchart LR
+PORTAL["Backstage Developer Portal"]
+SURVEY["Quarterly Pulse Survey"]
+RESULTS["Anonymized Survey Results"]
+ANALYSIS["Trend Analysis Dashboard"]
+REPORT["Engineering Health Report"]
+ACTIONS["Platform Improvement Actions"]
+PORTAL --> SURVEY
+SURVEY --> RESULTS
+RESULTS --> ANALYSIS
+ANALYSIS --> REPORT
+REPORT --> ACTIONS
+ACTIONS --> PORTAL
 ```
 
 ---
