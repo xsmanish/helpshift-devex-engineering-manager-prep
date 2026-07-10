@@ -229,6 +229,22 @@ Recommended Answer
 >
 > I try to be the same person during a major incident as I am during a successful launch.
 
+> I believe trust is built through consistency, transparency, and how you show up when things are difficult. 
+>
+> A good example was during our AWS Graviton migration program. It was a large initiative that affected multiple application teams across regions. While the technical plan was solid, many teams were hesitant because they were worried about production stability and business impact. 
+> Rather than pushing the change from the top, I spent time with the teams understanding their concerns. Some teams were worried about application compatibility, others were concerned about supportability if something went wrong after the migration.
+>
+>We created a transparent rollout plan, shared the risks openly, defined clear rollback procedures, and reviewed progress together every week. Whenever issues were found, I made sure we discussed them openly instead of trying to hide or downplay them.
+>
+> What I noticed was that over time the conversations changed. Teams stopped asking, "Why are we doing this?" and started asking, "How can we help accelerate it?" The trust wasn't built because I had the answers; it was built because the teams knew they would always get honest information, realistic expectations, and support when challenges arose.
+>
+> The migration was ultimately successful, but the bigger achievement for me was the relationship we built across teams. Even after the project, those same teams were much more willing to partner with us on future platform initiatives because trust had already been established.
+>
+> That experience reinforced my belief that trust is earned through consistent actions over time, especially during uncertainty—not through authority or position.
+
+Shorter 60-Second Version
+> "One of the best examples of building trust was during our AWS Graviton migration initiative. Several application teams were initially skeptical because they were concerned about production risk and business impact. Instead of simply driving the project from a management perspective, I spent time understanding their concerns, sharing risks transparently, and creating clear rollback and support plans. We reviewed progress openly every week and discussed issues honestly whenever they occurred. Over time, teams became more engaged and started actively supporting the initiative. The migration was successful, but what mattered most was that we built long-term trust and stronger partnerships across engineering teams. That experience taught me that trust is built through transparency, consistency, and being dependable when things don't go as planned."
+
 ---
 
 # Question: "How Do You Handle Conflict?"
